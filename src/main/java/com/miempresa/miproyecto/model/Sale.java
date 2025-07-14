@@ -1,0 +1,31 @@
+    package com.miempresa.miproyecto.model;
+
+
+    import jakarta.persistence.*;
+    import lombok.Data;
+
+    import java.time.LocalDateTime;
+    import java.util.List;
+
+    @Entity
+    @Data
+    public class Sale {
+
+
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Long Id;
+
+        private LocalDateTime startDate;
+        @ElementCollection
+        private List<String> productList;
+        private Double price;
+        @PrePersist
+        public void prePersist() {
+            this.startDate = LocalDateTime.now();
+        }
+
+
+
+
+    }

@@ -1,0 +1,54 @@
+<div class="container mt-4">
+  <h3>Gestión de Categorías</h3>
+
+  <!-- Formulario para crear o editar -->
+  <form (ngSubmit)="createCategory()" #categoryForm="ngForm" class="mb-4">
+    <div class="mb-3">
+      <label for="name" class="form-label">Nombre de la categoría</label>
+      <input
+        type="text"
+        id="name"
+        class="form-control"
+        name="name"
+        [(ngModel)]="category.name"
+        required
+      />
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="categoryForm.invalid">
+      {{ category.id ? 'Actualizar' : 'Crear' }}
+    </button>
+    <button
+      type="button"
+      class="btn btn-secondary ms-2"
+      *ngIf="category.id"
+      (click)="cancelEdit()"
+    >
+      Cancelar
+    </button>
+  </form>
+
+  <!-- Tabla de categorías -->
+  <table class="table table-bordered table-striped">
+    <thead class="table-dark">
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let cat of categories">
+      <td>{{ cat.id }}</td>
+      <td>{{ cat.name }}</td>
+      <td>
+        <button class="btn btn-sm btn-warning me-2" (click)="editCategory(cat)">
+          Editar
+        </button>
+        <button class="btn btn-sm btn-danger" (click)="deleteCategoryById(cat.id)">
+          Eliminar
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

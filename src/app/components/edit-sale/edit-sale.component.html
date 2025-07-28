@@ -1,0 +1,44 @@
+<div class="search-container">
+  <h2>🔍 Filter Sales by Date & Time Range</h2>
+
+  <div class="input-group">
+    <label for="start-datetime">From:</label>
+    <input
+      id="start-datetime"
+      type="datetime-local"
+      [(ngModel)]="startDateTime"
+      (change)="filterSalesByDateRange()"
+    />
+  </div>
+
+  <div class="input-group">
+    <label for="end-datetime">To:</label>
+    <input
+      id="end-datetime"
+      type="datetime-local"
+      [(ngModel)]="endDateTime"
+      (change)="filterSalesByDateRange()"
+    />
+  </div>
+</div>
+
+<div class="results-container" *ngIf="startDateTime && endDateTime">
+  <div *ngIf="filteredSales.length === 0" class="no-results">
+    <p>🚫 No sales found in the selected range.</p>
+  </div>
+
+  <div *ngIf="filteredSales.length > 0" class="total-sales">
+    <p><strong>💰 Total sales in range:</strong> ${{ totalFilteredSales }}</p>
+  </div>
+
+  <ul *ngIf="filteredSales.length > 0" class="sales-list">
+    <li *ngFor="let sale of filteredSales" class="sale-item">
+      <div class="sale-date">📅 {{ sale.startDate | date: 'dd-MM-yyyy' }}</div>
+      <div class="sale-info">
+        <p><strong>Total:</strong> ${{ sale.price }}</p>
+        <p><strong>Products:</strong> {{ sale.productList.join(', ') }}</p>
+      </div>
+    </li>
+  </ul>
+</div>
+

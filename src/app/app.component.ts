@@ -4,12 +4,14 @@ import { RouterOutlet } from '@angular/router';
 import { SaleComponent } from './components/sale/sale.component';
 import { CategoryComponent } from './components/category/category.component';
 import { ProductComponent } from './components/product/product.component';
+import { EditSaleComponent } from './components/edit-sale/edit-sale.component';
+
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [SaleComponent, SidebarComponent, RouterOutlet, CategoryComponent, ProductComponent],
+  imports: [SaleComponent, SidebarComponent, RouterOutlet, CategoryComponent, ProductComponent, EditSaleComponent],
   template: `
     <div class="d-flex">
       <app-sidebar></app-sidebar>

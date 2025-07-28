@@ -85,10 +85,15 @@ export class SaleComponent implements OnInit {
   }
 
   makeSale(): void {
-    const sale: Sale = {
-      productList: this.productsSelect.map(p => p.name),
-      price: this.productsSelect.reduce((sum, p) => sum + p.price, 0)
-    };
+      const now = new Date();
+      const offsetMs = now.getTimezoneOffset() * 60_000;
+      const localISOTime = new Date(now.getTime() - offsetMs).toISOString().slice(0, -1); // sin la "Z"
+
+      const sale: Sale = {
+        productList: this.productsSelect.map(p => p.name),
+        price: this.productsSelect.reduce((sum, p) => sum + p.price, 0),
+        startDate: localISOTime // 👈 aquí agregamos la fecha local
+      };
 
     this.saleService.createSale(sale).subscribe({
       next: (resp) => {

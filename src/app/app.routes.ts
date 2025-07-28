@@ -2,11 +2,13 @@ import { Routes } from '@angular/router';
 import { SaleComponent } from './components/sale/sale.component';
 import { CategoryComponent } from './components/category/category.component';
 import { ProductComponent } from './components/product/product.component';
+import { EditSaleComponent } from './components/edit-sale/edit-sale.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/sale', pathMatch: 'full' },
+  { path: '', redirectTo: 'sale', pathMatch: 'full' },
   { path: 'sale', component: SaleComponent },
   { path: 'category', component: CategoryComponent },
-  { path: 'product', component: ProductComponent }
+  { path: 'product', component: ProductComponent },
+  { path: 'edit-sale', component: EditSaleComponent }
 
 ];
